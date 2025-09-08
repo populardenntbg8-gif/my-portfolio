@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ayaan | Presentation Designer & Content Writer</title>
+  <meta name="description" content="Portfolio website of Ayaan – Presentation Designer & Content Writer. Services: pitch decks, school/business presentations, blog & article writing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0f14;
+      --card: #101720;
+      --muted: #94a3b8;
+      --text: #e5eef7;
+      --brand: #5eead4; /* teal-300 */
+      --brand-2: #38bdf8; /* sky-400 */
+      --ring: rgba(94,234,212,.4);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:radial-gradient(1200px 600px at 80% -20%, #0b2840 0%, transparent 60%), var(--bg);color:var(--text);font:16px/1.6 Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(1120px, 92vw);margin-inline:auto}
+    .btn{display:inline-flex;gap:.6rem;align-items:center;border:1px solid rgba(255,255,255,.1);padding:.9rem 1.2rem;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));backdrop-filter:saturate(130%) blur(6px);transition:.2s transform,.2s box-shadow,.2s border-color}
+    .btn:hover{transform:translateY(-1px);box-shadow:var(--shadow);border-color:rgba(255,255,255,.2)}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#001018;border:none}
+    .chip{display:inline-flex;align-items:center;gap:.5rem;background:rgba(94,234,212,.12);border:1px solid rgba(94,234,212,.25);color:var(--brand);padding:.35rem .6rem;border-radius:999px;font-weight:600;font-size:.85rem}
+    header{position:sticky;top:0;background:rgba(10,15,20,.6);backdrop-filter: blur(10px);z-index:50;border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex;justify-content:space-between;align-items:center;padding:.8rem 0}
+    .nav a.logo{font-weight:800;letter-spacing:.3px}
+    .nav ul{display:flex;gap:1rem;list-style:none;margin:0;padding:0}
+    .nav a.link{opacity:.85;padding:.6rem .8rem;border-radius:10px}
+    .nav a.link:hover{background:rgba(255,255,255,.06);opacity:1}
+    .menu-btn{display:none}
+
+    .hero{padding:6rem 0 4rem;position:relative}
+    .hero-grid{display:grid;grid-template-columns: 1.1fr .9fr;gap:2rem;align-items:center}
+    .title{font-size:clamp(2rem, 4vw + .5rem, 3.2rem);line-height:1.1;margin:.6rem 0}
+    .subtitle{color:var(--muted);max-width:60ch}
+    .hero-card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);padding:1.2rem;border-radius:var(--radius)}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.2rem}
+    .stat{background:var(--card);padding:1rem;border-radius:14px;border:1px solid rgba(255,255,255,.06);text-align:center}
+    .stat b{font-size:1.4rem}
+
+    section{padding:4rem 0}
+    .sec-title{font-size:1.8rem;margin:0 0 .5rem}
+    .grid{display:grid;gap:1rem}
+
+    /* Services */
+    .services{grid-template-columns:repeat(3,1fr)}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:1.2rem}
+    .card h3{margin:.2rem 0 .4rem}
+    .card p{color:var(--muted)}
+
+    /* Work */
+    .work{grid-template-columns:repeat(3,1fr)}
+    .work .item{position:relative;overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,.06)}
+    .work .thumb{aspect-ratio:16/10;background:linear-gradient(135deg, #1f2937, #0b1220);display:grid;place-items:center}
+    .work .cap{position:absolute;inset:auto 0 0 0;background:linear-gradient(to top, rgba(0,0,0,.65), transparent);padding:1rem}
+
+    /* Pricing */
+    .pricing{grid-template-columns:repeat(3,1fr)}
+    .price-card{position:relative}
+    .price{font-size:2rem;font-weight:800}
+
+    /* Contact */
+    form{display:grid;gap:.8rem;margin-top:1rem}
+    input, textarea{width:100%;border-radius:12px;background:#0e141c;border:1px solid rgba(255,255,255,.08);padding:.9rem;color:var(--text)}
+    input:focus, textarea:focus{outline:2px solid var(--ring);border-color:transparent}
+    textarea{min-height:120px}
+
+    footer{padding:2.5rem 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.06)}
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero-grid{grid-template-columns:1fr}
+      .services, .work, .pricing{grid-template-columns:1fr}
+      .menu-btn{display:inline-flex}
+      .nav ul{position:fixed;inset:60px 0 auto 0;background:rgba(10,15,20,.95);backdrop-filter: blur(10px);flex-direction:column;padding:1rem 1rem 2rem;border-bottom:1px solid rgba(255,255,255,.08);transform:translateY(-130%);transition:.25s;z-index:60}
+      .nav ul.show{transform:translateY(0)}
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <a class="logo" href="#home">Ayaan</a>
+      <button class="btn menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+      <ul id="menu">
+        <li><a class="link" href="#services">Services</a></li>
+        <li><a class="link" href="#work">Work</a></li>
+        <li><a class="link" href="#pricing">Pricing</a></li>
+        <li><a class="link" href="#about">About</a></li>
+        <li><a class="link" href="#contact">Contact</a></li>
+      </ul>
+      <a class="btn primary" href="#contact">Get a Quote</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="home" class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="chip">Presentation Designer • Content Writer</span>
+        <h1 class="title">Slides that tell stories. Words that convert.</h1>
+        <p class="subtitle">I design clean, persuasive presentations (PowerPoint / Google Slides) and write engaging content for blogs, products, and school or business projects. Fast delivery, clear communication, and great results.</p>
+        <div style="display:flex;gap:.8rem;margin-top:1.1rem;flex-wrap:wrap">
+          <a class="btn primary" href="#contact">Start your project</a>
+          <a class="btn" href="#work">See my work</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>50+</b><div>Presentations</div></div>
+          <div class="stat"><b>4.9★</b><div>Avg. feedback</div></div>
+          <div class="stat"><b>24–48h</b><div>Typical delivery</div></div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <img alt="Preview of a modern slide deck" src="https://images.unsplash.com/photo-1551281044-8d8d8c7119f9?q=80&w=1400&auto=format&fit=crop" />
+      </div>
+    </div>
+  </main>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <h2 class="sec-title">Services</h2>
+      <p class="subtitle">Clear, modern design with strong structure and attention to detail.</p>
+      <div class="grid services">
+        <div class="card">
+          <h3>Pitch Decks & Business Slides</h3>
+          <p>Investor decks, sales presentations, pitch-ready visuals, and branded templates.</p>
+        </div>
+        <div class="card">
+          <h3>Academic & School Presentations</h3>
+          <p>Structured slides for classes and reports (history, science, case studies, etc.).</p>
+        </div>
+        <div class="card">
+          <h3>Articles & Blog Writing</h3>
+          <p>Well‑researched, SEO‑friendly articles, product descriptions, and summaries.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <section id="work">
+    <div class="container">
+      <h2 class="sec-title">Selected Work</h2>
+      <p class="subtitle">A few examples. More samples available on request.</p>
+      <div class="grid work">
+        <article class="item">
+          <div class="thumb" aria-hidden="true">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 4.5h18v12H3z" stroke="white" opacity=".9"/>
+              <path d="M3 18.5h18M8 21h8" stroke="white" opacity=".5"/>
+            </svg>
+          </div>
+          <div class="cap">
+            <b>Startup Pitch – 12 slides</b>
+            <div style="color:var(--muted)">Clean investor deck with charts and visuals</div>
+          </div>
+        </article>
+        <article class="item">
+          <div class="thumb" aria-hidden="true">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="8" r="5" stroke="white" opacity=".9"/>
+              <path d="M3 21a9 9 0 0 1 18 0" stroke="white" opacity=".5"/>
+            </svg>
+          </div>
+          <div class="cap">
+            <b>Academic Deck – WWII overview</b>
+            <div style="color:var(--muted)">Timeline slides + concise speaker notes</div>
+          </div>
+        </article>
+        <article class="item">
+          <div class="thumb" aria-hidden="true">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="4" width="16" height="12" rx="2" stroke="white" opacity=".9"/>
+              <path d="M8 20h8" stroke="white" opacity=".5"/>
+            </svg>
+          </div>
+          <div class="cap">
+            <b>Product Blog – 1200 words</b>
+            <div style="color:var(--muted)">SEO structure, headings, internal links</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing">
+    <div class="container">
+      <h2 class="sec-title">Pricing</h2>
+      <p class="subtitle">Transparent packages. Custom quotes available.</p>
+      <div class="grid pricing">
+        <div class="card price-card">
+          <h3>Starter</h3>
+          <p class="price">€25</p>
+          <p class="subtitle">Up to 5 slides or 500 words • 1 revision • 48h</p>
+          <a class="btn" href="#contact">Choose Starter</a>
+        </div>
+        <div class="card price-card" style="outline:2px solid rgba(94,234,212,.45)">
+          <h3>Standard</h3>
+          <p class="price">€55</p>
+          <p class="subtitle">Up to 12 slides or 1200 words • 2 revisions • 48h</p>
+          <a class="btn primary" href="#contact">Choose Standard</a>
+        </div>
+        <div class="card price-card">
+          <h3>Pro</h3>
+          <p class="price">€120</p>
+          <p class="subtitle">Up to 25 slides or 2500 words • 3 revisions • 72h</p>
+          <a class="btn" href="#contact">Choose Pro</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <h2 class="sec-title">About Me</h2>
+      <div class="grid" style="grid-template-columns: 1.1fr .9fr; align-items:start">
+        <p class="subtitle">Hi, I’m Ayaan. I create persuasive presentations and clear written content. I focus on structure, clarity, and visuals that support your message. I’ve helped students, startups, and small businesses communicate ideas with confidence.</p>
+        <div class="card">
+          <ul style="margin:0;padding-left:1.2rem;line-height:1.9">
+            <li>PowerPoint & Google Slides templates</li>
+            <li>Visual storytelling & layout systems</li>
+            <li>SEO‑aware article outlines</li>
+            <li>Fast, friendly communication</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="sec-title">Let’s work together</h2>
+      <p class="subtitle">Tell me briefly about your project. I’ll reply with a free quote and timeline.</p>
+      <form onsubmit="event.preventDefault(); alert('Thanks! This demo form does not send emails. Replace with your form service or mailto link.');">
+        <div class="grid" style="grid-template-columns:1fr 1fr">
+          <div>
+            <label>Name</label>
+            <input required placeholder="Your name" />
+          </div>
+          <div>
+            <label>Email</label>
+            <input required type="email" placeholder="you@example.com" />
+          </div>
+        </div>
+        <div>
+          <label>Project details</label>
+          <textarea required placeholder="What do you need? Slides, article, deadline, style…"></textarea>
+        </div>
+        <div style="display:flex;gap:.8rem;align-items:center;flex-wrap:wrap">
+          <button class="btn primary" type="submit">Send Message</button>
+          <a class="btn" href="mailto:ayaan@example.com">Email me directly</a>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+      <div>© <span id="year"></span> Ayaan. All rights reserved.</div>
+      <div style="opacity:.8">Made with ❤ in La Rioja.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const menu = document.getElementById('menu');
+    menuBtn?.addEventListener('click', () => menu.classList.toggle('show'));
+
+    // Close menu on navigation
+    menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=> menu.classList.remove('show')));
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
